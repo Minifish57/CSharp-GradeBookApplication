@@ -27,23 +27,23 @@ namespace GradeBook.GradeBooks
             {
                 orderedAverageGrade.Add(student.AverageGrade);
             }
-            orderedAverageGrade = orderedAverageGrade.OrderBy(a => a).ToList();
+            orderedAverageGrade = orderedAverageGrade.OrderByDescending(a => a).ToList();
 
             //get where the grade fit in the list
-            int index = orderedAverageGrade.FindIndex(g => g >= averageGrade) - 1;
+            int index = orderedAverageGrade.FindIndex(g => g <= averageGrade);
 
-            if(index > 0 && index <= student20Percent)
+            if(index < student20Percent)
             {
                 return 'A';
-            }else if (index > student20Percent && index <= 2 * student20Percent)
+            }else if (index >= student20Percent && index < 2 * student20Percent)
             {
                 return 'B';
             }
-            else if (index > 2 * student20Percent && index <= 3 * student20Percent)
+            else if (index >= 2 * student20Percent && index < 3 * student20Percent)
             {
                 return 'C';
             }
-            else if (index > 3 * student20Percent && index <= 4 * student20Percent)
+            else if (index >= 3 * student20Percent && index < 4 * student20Percent)
             {
                 return 'D';
             }
